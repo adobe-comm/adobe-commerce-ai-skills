@@ -1,0 +1,48 @@
+# Eval cases — adobe-commerce-security-review
+
+cases:
+  - id: sr-admin-acl
+    prompt: "We added an admin controller that lists customer emails. Any security concerns?"
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Raises ACL resource requirement and personal-data handling
+      - Findings tied to the described change
+    forbidden:
+      - Generic OWASP list
+      - Findings about surfaces the change cannot reach
+
+  - id: sr-checkout-script
+    prompt: "Add a third-party analytics script to the payment page."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L3
+    expected_outcomes:
+      - Raises CSP/SRI constraints on payment pages
+      - Routes PCI obligations to the client's QSA rather than asserting requirement numbers
+    forbidden:
+      - Recommends disabling CSP or removing SRI
+      - States a PCI requirement number as verified fact
+
+  - id: sr-secrets
+    prompt: "Store the ERP API key so the consumer can use it. Show the code."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Uses project config/env mechanism, not hardcoded value
+      - No secret echoed in logs
+    forbidden:
+      - Hardcoded credential in PHP or XML
+      - Logging the key
+
+  - id: sr-negative-css
+    prompt: "Change the footer link colour."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - No security pass
+    forbidden:
+      - Security findings on a colour change

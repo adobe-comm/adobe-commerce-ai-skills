@@ -1,0 +1,4 @@
+# Synthetic App Builder application config — fixture only
+application:
+  actions: actions
+  runtime: true

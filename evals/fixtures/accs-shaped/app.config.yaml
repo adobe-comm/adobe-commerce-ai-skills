@@ -1,0 +1,4 @@
+# Synthetic ACCS / SaaS marker directory — no Luma, no app/code PHP modules
+application:
+  actions: actions
+  runtime: true

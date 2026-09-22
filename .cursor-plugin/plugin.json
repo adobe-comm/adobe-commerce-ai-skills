@@ -1,0 +1,16 @@
+{
+  "name": "adobe-commerce-ai-skills",
+  "version": "0.5.0",
+  "description": "Brainvire CoE Adobe Commerce plugin: scaffold, debug, test, review, integrate, performance, docs, and vendor write guardrails.",
+  "author": {
+    "name": "Brainvire Adobe Commerce CoE"
+  },
+  "keywords": [
+    "adobe-commerce",
+    "magento",
+    "php",
+    "paas",
+    "engineering"
+  ],
+  "license": "UNLICENSED"
+}

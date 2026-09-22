@@ -1,0 +1,8 @@
+{
+  "name": "acme/cloud-shaped-commerce",
+  "description": "Synthetic Adobe Commerce Cloud-shaped fixture — no client data",
+  "require": {
+    "php": "^8.2",
+    "magento/product-enterprise-edition": "2.4.7-p3"
+  }
+}

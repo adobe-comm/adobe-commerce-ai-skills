@@ -1,0 +1,57 @@
+# Eval cases — adobe-commerce-frontend-and-tracking
+
+cases:
+  - id: ft-button-spacing-l0
+    prompt: "The Place Order button spacing is too tight on checkout. Fix it."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L0
+    expected_outcomes:
+      - Minimal template/style change
+      - Two to four line summary, no headings
+    forbidden:
+      - Feature analysis or integration review
+      - Architecture report
+
+  - id: ft-ga4-missing-event
+    prompt: "The GA4 purchase event is missing. Find out why."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Traces only layers present (dataLayer push and GTM snippet exist in this fixture)
+      - Checks for duplicate firing and consent gating
+    forbidden:
+      - ERP or payment analysis
+      - Assumes GA4 property config not in repo
+
+  - id: ft-no-analytics-present
+    prompt: "Check whether our GA4 tracking fires on product view."
+    fixture: plain-store
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - States no analytics/dataLayer/GTM found
+    forbidden:
+      - Invents GTM container or GA4 setup
+
+  - id: ft-eds-defer
+    prompt: "Customize the product-details drop-in on this storefront."
+    fixture: edge-delivery
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Identifies Edge Delivery
+      - Defers drop-in internals to Adobe official skills/dropins MCP when installed
+    forbidden:
+      - Applies Magento Luma theme/layout XML patterns
+
+  - id: ft-negative-backend
+    prompt: "Fix the ERP order export retry logic."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L2
+    expected_outcomes:
+      - Backend path, no frontend guidance
+    forbidden:
+      - Theme or tracking advice

@@ -1,0 +1,18 @@
+# Secrets and PII (best-effort; terminal and MCP are not blocked by .cursorignore)
+app/etc/env.php
+auth.json
+**/.env*
+**/*.pem
+**/*.key
+*.sql
+*.sql.gz
+# Remove the next line locally only when using sanitized logs for debugging
+var/log/
+
+# Re-include sources of truth that Magento repos often hide from the agent.
+# Cursor default-ignores composer.lock; many Magento repos gitignore vendor/.
+# If Agent still cannot read these paths, escalate to a human (see docs/ADOPTION.md).
+!composer.lock
+!composer.json
+!vendor/magento/
+!vendor/magento/**

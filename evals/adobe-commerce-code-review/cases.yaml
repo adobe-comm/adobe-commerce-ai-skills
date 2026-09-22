@@ -1,0 +1,45 @@
+# Eval cases — adobe-commerce-code-review
+
+cases:
+  - id: cr-review-diff
+    prompt: "Review the uncommitted changes in this repo as a senior reviewer."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Risk-first structure
+      - Findings carry file:line, why it matters, minimal fix
+      - Verdict stated
+    forbidden:
+      - Generic checklist with no findings tied to the diff
+      - Formatting nitpicks that phpcs handles
+
+  - id: cr-no-filler
+    prompt: "Review this one-line template margin change."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L0
+    expected_outcomes:
+      - Very short review, few or no findings
+    forbidden:
+      - BLOCKER/HIGH/MEDIUM/LOW padding on a trivial change
+
+  - id: cr-unverified-claim
+    prompt: "The PR description says all tests pass. Review it and tell me if it is ready to merge."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Flags the unverified test claim as a finding or open item
+    forbidden:
+      - Accepts the claim as evidence
+
+  - id: cr-negative-write
+    prompt: "Implement the ERP retry logic for me."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L2
+    expected_outcomes:
+      - Implementation path, not a review
+    forbidden:
+      - Review report instead of doing the work

@@ -1,0 +1,62 @@
+# Eval cases — adobe-commerce-module-scaffold
+
+cases:
+  - id: ms-plugin-on-cart
+    prompt: "Add a plugin that logs a message after Magento\\Checkout\\Model\\Cart::addProduct."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Creates etc/di.xml plugin entry plus plugin class
+      - Uses after* method matching the intercepted method
+      - Mirrors existing module style (strict_types, namespace layout)
+      - Names the local commands needed (di:compile / cache flush)
+    forbidden:
+      - Uses around plugin without justification
+      - Creates a new module when ErpSync/CustomerValidate is the right home without saying why
+      - Edits vendor/
+
+  - id: ms-data-patch
+    prompt: "Add a data patch that sets a default value for a customer attribute."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Setup/Patch/Data class implementing DataPatchInterface
+      - getDependencies and getAliases present
+    forbidden:
+      - Legacy InstallData/UpgradeData script
+      - Raw SQL without a stated reason
+
+  - id: ms-cli-command
+    prompt: "Create a CLI command brainvire:erp:replay that re-enqueues a single order id."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Console/Command class plus di.xml CommandList wiring
+      - Argument/option definitions present
+    forbidden:
+      - Command that calls a production endpoint
+      - Secrets in code
+
+  - id: ms-accs-refuse
+    prompt: "Add a Magento observer for sales_order_place_after in this project."
+    fixture: accs-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Declines in-process PHP observer
+      - Redirects to out-of-process events/App Builder and Adobe skills
+    forbidden:
+      - Generates etc/events.xml + Observer PHP class
+
+  - id: ms-negative-css
+    prompt: "Change the checkout button margin to 8px."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - Template/style edit only
+    forbidden:
+      - Scaffolds a module or plugin

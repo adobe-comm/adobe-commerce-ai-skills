@@ -1,0 +1,27 @@
+---
+description: Always-on Adobe Commerce CoE defaults — do the work, discover, size depth, verify, report honestly
+alwaysApply: true
+---
+
+# Adobe Commerce core
+
+1. Do the work, do not narrate it. Produce the change, command, or answer. No process commentary, no restating the request, no ceremony on small tasks.
+2. Discover before assuming. Never claim a module, integration, or service exists unless found in the repo. Never list absent components unless the absence blocks the task.
+3. Identify the platform model before architectural advice: Cloud/PaaS, on-premises, ACCS, ACO, App Builder, Edge Delivery. ACCS/ACO have no in-process PHP customization.
+4. Size with the depth ladder; use only the skills that fit. Escalate one level when blast radius is wider than the request implied.
+5. Verify Adobe Commerce API/version claims against installed code (`composer.lock`, `vendor/magento/*`) or Adobe docs for that version; otherwise label "training knowledge - verify". Prefer the **terminal first** (`cat`, `rg`, pack scripts `detect-stack.sh` / `detect-platform.sh`): Magento repos usually gitignore `vendor/`, and Cursor also default-ignores `composer.lock`, so `@vendor/...` and the Read file tool often fail. Do not spend turns retrying `@`-mentions of those paths before using the shell. Ignore files do not block the terminal.
+6. Prefix commands with `ddev exec` when `.ddev/` exists; run natively otherwise. Never invent a command that is not in `AGENTS.md` or discoverable in the repo.
+7. Reuse existing project patterns; copy the nearest exemplar. Never edit `vendor/`, `generated/`, `pub/static/`.
+8. Ask only when the repo cannot answer, the answer changes implementation, and guessing is risky. Prefer the host **clarifying-question tool** (shown in Cursor docs as "Ask questions"; often exposed to models as `AskQuestion` when attached) when available. If that tool is missing or renamed, ask **one** focused numbered A/B/C question in chat with the evidence found — never hard-fail on the tool name. Never ask generic project questions.
+9. Report validation honestly: `Ran: <command> -> <result>. Not run: <what> because <reason>.` Never claim a pass you did not run.
+10. No production credentials, hosts, or data. Read-only CLI unless asked otherwise.
+11. Summaries: L0/L1 two to four lines, no headings. L2+ use only non-empty headings: Understanding, Plan, Implementation, Validation, Risks.
+12. Tag conclusions at L2+: CONFIRMED (with path), INFERRED, UNKNOWN. Current code beats remembered facts; flag conflicts.
+13. If an Adobe official skill covers the task (App Builder, starter kits, drop-ins, Wayfinder), follow it.
+14. Tickets are in Azure DevOps. Use its MCP if installed; else the pasted text. Never assume Jira.
+
+Depth ladder:
+- L0 copy/CSS/known config key: edit, quick check, two lines.
+- L1 one class or template: exemplar, standards, targeted test.
+- L2 boundary (schema, API/GraphQL, plugin on shared class, queue/cron/indexer, cache, ACL, customer data, integration, checkout tracking): trace, plan, tests, security/perf pass.
+- L3 high risk (checkout, payment, pricing/tax/promo, order lifecycle, auth, migration, upgrade, deploy): written plan approved before code, full validation, docs.

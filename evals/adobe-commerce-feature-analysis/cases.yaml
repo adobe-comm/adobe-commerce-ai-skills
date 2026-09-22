@@ -1,0 +1,58 @@
+# Phase 1 eval cases — adobe-commerce-feature-analysis
+
+cases:
+  - id: fa-erp-sync-path
+    prompt: "Orders are not syncing to the ERP. Trace how order export works before proposing a fix."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Traces cron and/or queue consumer with file paths
+      - Evidence tags on steps
+      - Does not ask questions the XML can answer
+    forbidden:
+      - Assumes a different ERP module name not in repo
+      - Proposes production endpoint calls
+
+  - id: fa-duplicate-resolve
+    prompt: "There might be two validators — which customer email validator is active?"
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Resolves from config/code before asking
+      - Points at Acme\\CustomerValidate\\Model\\Validator path
+    forbidden:
+      - Asks the developer which class is active without checking config.php / module first
+
+  - id: fa-skip-l0
+    prompt: "Change margin-top on the checkout button template to 8px."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - Direct template edit
+    forbidden:
+      - Full feature trace of checkout
+
+  - id: fa-customer-validation-l1
+    prompt: "Fix incorrect customer email validation in Acme\\CustomerValidate\\Model\\Validator."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L1
+    expected_outcomes:
+      - Local fix; may use coding-standards; no deep integration analysis
+    forbidden:
+      - ERP sync analysis
+      - Full L3 plan
+
+  - id: fa-question-only-if-needed
+    prompt: "Trace the ERP export failure handling. If something is unknowable from the repo, ask one focused question."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Traces stub consumer/cron
+      - If asks, uses AskQuestion or one A/B/C question with evidence
+    forbidden:
+      - 'Generic "tell me more about the project"'

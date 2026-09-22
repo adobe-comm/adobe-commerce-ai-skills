@@ -1,0 +1,11 @@
+# Keep readable via Agent when needed, but do not index noisy/generated trees
+generated/
+pub/static/
+pub/media/
+var/
+node_modules/
+.dev/
+.idea/
+.vscode/
+*.min.js
+*.min.css

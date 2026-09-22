@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "hooks": {
+    "preToolUse": [
+      {
+        "command": "./scripts/block-protected-writes.py",
+        "matcher": "Write|StrReplace|Delete|EditNotebook",
+        "failClosed": true,
+        "timeout": 10
+      }
+    ],
+    "beforeShellExecution": [
+      {
+        "command": "./scripts/block-protected-shell.py",
+        "matcher": "vendor/|generated/|pub/static|app/etc/env\\.php|auth\\.json|\\brm\\b|\\bmv\\b|\\bsed\\b|\\btee\\b|git push.*(--force|-f)\\b|\\btruncate\\b|DROP\\s+TABLE|DROP\\s+DATABASE",
+        "failClosed": false,
+        "timeout": 10
+      }
+    ]
+  }
+}

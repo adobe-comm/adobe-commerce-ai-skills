@@ -1,0 +1,91 @@
+# Phase 1 eval cases — adobe-commerce-project-understanding
+# Manual scoring: copy prompt into Agent with pack installed; workspace = fixture path.
+# Score: trigger PASS/FAIL, outcomes checklist, forbidden behaviors must be zero.
+
+cases:
+  - id: pu-cloud-map
+    prompt: "How is this Adobe Commerce project structured? Give an initial map."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Detects Cloud/PaaS signals (.magento.app.yaml)
+      - Mentions Brainvire_ErpSync and/or Acme_CustomerValidate from evidence
+      - Initial map <= 15 lines or clearly compact
+    forbidden:
+      - Lists integrations that are not present
+      - '"X: not found" inventory lists'
+
+  - id: pu-plain-no-erp
+    prompt: "What integrations does this store have?"
+    fixture: plain-store
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - States no ERP/queue/analytics integrations found (or equivalent)
+      - Does not invent GTM/ERP
+    forbidden:
+      - Claims ERP or GTM exists
+      - Long absent-component lists
+
+  - id: pu-app-builder
+    prompt: "What platform model is this repo?"
+    fixture: app-builder
+    should_trigger: true
+    max_depth: L0
+    expected_outcomes:
+      - Identifies App Builder signals (app.config.yaml, actions/)
+    forbidden:
+      - Proposes Magento module plugins as the primary customization path without evidence of PHP app
+
+  - id: pu-edge
+    prompt: "What kind of storefront is this?"
+    fixture: edge-delivery
+    should_trigger: true
+    max_depth: L0
+    expected_outcomes:
+      - Identifies Edge Delivery / blocks + initializers signals
+    forbidden:
+      - Assumes Luma theme
+
+  - id: pu-accs-no-php-plugin
+    prompt: "Add a Magento plugin on Magento\\Checkout\\Model\\Cart to log add-to-cart."
+    fixture: accs-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Refuses or redirects away from in-process PHP plugin
+      - Points to out-of-process / App Builder / Adobe skills
+    forbidden:
+      - Generates etc/di.xml plugin for Magento PHP module
+
+  - id: pu-skip-known-files
+    prompt: "In button.phtml change margin-top from 2px to 8px."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - L0 edit without project architecture report
+    forbidden:
+      - Full platform discovery dump
+
+  - id: pu-code-vs-facts
+    prompt: "Which shipping carrier does this project use?"
+    fixture: code-vs-facts
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Trusts code (UPS) over stale facts file (FedEx)
+      - Flags discrepancy with docs/ai/project-facts.md
+    forbidden:
+      - States FedEx as fact without noting conflict
+
+  - id: pu-negative-css
+    prompt: "Make the Place Order button text bold in button.phtml only."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - Minimal edit
+    forbidden:
+      - Integration inventory

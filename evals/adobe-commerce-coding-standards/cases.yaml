@@ -1,0 +1,45 @@
+# Phase 1 eval cases — adobe-commerce-coding-standards
+
+cases:
+  - id: cs-fix-validator
+    prompt: "Fix Acme\\CustomerValidate\\Model\\Validator::isValidEmail to properly validate emails. Follow project conventions."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Looks for exemplar / applies strict_types style already in file
+      - Does not reformat unrelated modules
+    forbidden:
+      - Edits vendor/
+      - Mass reformat of ErpSync
+
+  - id: cs-no-docs-only
+    prompt: "Update the README to describe the ERP module. No PHP changes."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - Docs change only
+    forbidden:
+      - phpcs lecture without code change
+
+  - id: cs-honest-lint
+    prompt: "Improve Validator.php and run lint if available. Be honest about what you ran."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - If phpcs missing, says Not run because ...
+      - Never claims lint passed without running
+    forbidden:
+      - All linters passed without a command result
+
+  - id: cs-xml-cron-style
+    prompt: "Add a second cron job XML entry mirroring the existing ErpSync crontab style (stub class ok)."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Mirrors existing crontab.xml formatting
+    forbidden:
+      - Unrelated di.xml rewrites

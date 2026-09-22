@@ -1,0 +1,32 @@
+# Secrets / local env
+.env
+.env.*
+!.env.example
+auth.json
+*.pem
+*.key
+credentials.json
+
+# Magento / Composer noise if someone copies a store into this repo
+/vendor/
+/generated/
+/pub/static/
+/var/
+composer.lock
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Local Cursor / agent clutter
+.cursor/hooks.local.json
+*.local.md
+
+# Fixture gitignored payloads (must stay on disk but not in pack git when present)
+evals/fixtures/vendor-probe-git/vendor/
+evals/fixtures/vendor-probe-git/composer.lock
+evals/fixtures/vendor-probe/vendor/
+evals/fixtures/vendor-probe/composer.lock

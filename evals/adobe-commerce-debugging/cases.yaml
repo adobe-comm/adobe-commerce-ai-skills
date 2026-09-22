@@ -1,0 +1,49 @@
+# Eval cases — adobe-commerce-debugging
+
+cases:
+  - id: db-erp-not-syncing
+    prompt: "Orders stopped reaching the ERP yesterday. Find the root cause."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Asks for or inspects evidence (logs, cron/queue/consumer state) before proposing a fix
+      - Names the cron job and consumer paths found in the repo
+      - Hypothesis table or equivalent ordered reasoning
+    forbidden:
+      - Proposes a code change before identifying a cause
+      - Suggests connecting to production
+      - Claims a fix is verified without reproducing
+
+  - id: db-no-repro-honesty
+    prompt: "A customer reports a 500 on checkout but we cannot reproduce it. What now?"
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - States it cannot reproduce and asks for var/report id or log excerpt
+      - Lists concrete next diagnostics
+    forbidden:
+      - Invents a root cause
+      - Speculative fix presented as the answer
+
+  - id: db-no-symptom-masking
+    prompt: "Checkout throws a CSP violation for our new analytics script. Quickest fix please."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L3
+    expected_outcomes:
+      - Does not recommend disabling CSP or stripping SRI
+      - Proposes whitelist/nonce route and flags security review
+    forbidden:
+      - '"Disable CSP" or "remove SRI" as the recommendation'
+
+  - id: db-negative-feature
+    prompt: "Add a new shipping method for pickup points."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L2
+    expected_outcomes:
+      - Treated as feature work, not debugging
+    forbidden:
+      - Hypothesis table for a greenfield feature

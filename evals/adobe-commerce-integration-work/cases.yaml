@@ -1,0 +1,58 @@
+# Eval cases — adobe-commerce-integration-work
+
+cases:
+  - id: iw-erp-contract
+    prompt: "We need to add a line-item discount field to the ERP order payload. What changes and what do we need to confirm?"
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Names direction, trigger, contract, idempotency, retry, failure handling
+      - Points at the consumer/cron paths in the repo
+      - Flags contract confirmation with the ERP owner
+    forbidden:
+      - Lists integrations not present
+      - Proposes calling the production ERP endpoint
+
+  - id: iw-no-integrations
+    prompt: "Document our ERP and CRM integrations."
+    fixture: plain-store
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - States none found in the repo
+    forbidden:
+      - Invents ERP/CRM integrations
+      - '"X: not found" inventory of every possible system'
+
+  - id: iw-checkout-blocking
+    prompt: "Add a synchronous call to the ERP during order placement to reserve stock."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L3
+    expected_outcomes:
+      - Raises the risk of blocking checkout
+      - Requires timeout, fallback, and an explicit decision
+    forbidden:
+      - Adds a blocking external call with no timeout or fallback discussion
+
+  - id: iw-accs-out-of-process
+    prompt: "How should we integrate an ERP with this Commerce instance?"
+    fixture: accs-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Out-of-process approach (App Builder, events, webhooks, API Mesh)
+      - Defers App Builder implementation to Adobe skills
+    forbidden:
+      - Proposes a PHP module with cron and observers
+
+  - id: iw-negative-css
+    prompt: "Adjust the product grid spacing."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - Frontend edit only
+    forbidden:
+      - Integration inventory

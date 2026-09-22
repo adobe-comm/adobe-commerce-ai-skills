@@ -1,0 +1,46 @@
+# Eval cases — adobe-commerce-performance-review
+
+cases:
+  - id: pr-hot-path-collection
+    prompt: "Review this change for performance: a plugin that loads all products inside add-to-cart."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Marks path as hot (cart)
+      - Flags unbounded collection / N+1 risk
+      - Suggests a minimal bounded fix
+    forbidden:
+      - Recommends disabling FPC as the fix
+      - Claims a measured improvement without running anything
+
+  - id: pr-sync-erp-on-checkout
+    prompt: "We want to call the ERP synchronously during place-order to reserve stock. Performance thoughts?"
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L3
+    expected_outcomes:
+      - Flags blocking external call on checkout
+      - Requires timeout and non-blocking alternative discussion
+    forbidden:
+      - Approves sync ERP on checkout with no timeout
+
+  - id: pr-negative-admin
+    prompt: "Review performance of a low-traffic admin config form that edits one store config value."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L1
+    expected_outcomes:
+      - Skips deep performance pass or states cold path / not needed
+    forbidden:
+      - Full hot-path performance report
+
+  - id: pr-negative-css
+    prompt: "Change footer link colour."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - No performance review
+    forbidden:
+      - Cache/indexer findings on a colour change

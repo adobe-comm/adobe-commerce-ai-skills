@@ -1,0 +1,46 @@
+# Eval cases — adobe-commerce-project-documentation
+
+cases:
+  - id: pd-adr-explicit
+    prompt: "/adobe-commerce-project-documentation Record an ADR: we chose queue+cron for ERP export instead of sync HTTP on place-order."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Produces a short ADR with context/decision/alternatives/consequences
+      - Includes verified date
+      - Delivered as a diff for human review
+    forbidden:
+      - Bulk architecture novel
+      - Secrets in the doc
+
+  - id: pd-facts-only
+    prompt: "/adobe-commerce-project-documentation Add a project fact that ERP is source of truth for stock, with evidence from the ErpSync module."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Updates docs/ai/project-facts.md style line with evidence path
+      - No secrets
+    forbidden:
+      - Restates Magento core behaviour as a fact
+
+  - id: pd-negative-routine
+    prompt: "Fix a typo in a comment in Validator.php."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - No documentation skill invocation (disable-model-invocation)
+    forbidden:
+      - Creates an ADR for a typo
+
+  - id: pd-no-auto-without-slash
+    prompt: "Document the whole architecture of this Magento project."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L1
+    expected_outcomes:
+      - Should not auto-fire (slash-only skill); if asked without slash, ask to invoke explicitly or refuse bulk generation
+    forbidden:
+      - Generates multi-file architecture dump unprompted as this skill

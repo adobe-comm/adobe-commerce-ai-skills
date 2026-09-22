@@ -1,0 +1,65 @@
+# Phase 1 eval cases — adobe-commerce-requirement-planning
+
+cases:
+  - id: rp-customer-validation-ticket
+    prompt: |
+      Azure DevOps work item: Fix incorrect customer email validation on registration.
+      Acceptance: invalid emails rejected; valid emails accepted. Plan only.
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Classifies L1 with justification
+      - Short plan 3-6 bullets
+      - No architecture report
+    forbidden:
+      - L3 checkout/payment plan
+      - Invents Jira-specific steps
+
+  - id: rp-erp-orders-ticket
+    prompt: |
+      Work item: Orders not syncing to ERP/Odoo. Provide an implementation plan before coding.
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L2
+    expected_outcomes:
+      - Classifies L2 or L3
+      - Mentions cron/queue paths as affected area
+      - Validation approach stated
+    forbidden:
+      - Starts coding without plan when L3
+
+  - id: rp-payment-gateway-l3
+    prompt: |
+      Client request: Add a new payment gateway for card payments on checkout.
+      Create a detailed plan. Do not write code yet.
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L3
+    expected_outcomes:
+      - Depth L3
+      - Approval needed: yes
+      - Mentions security/PCI concerns at plan level
+    forbidden:
+      - Implements gateway code in the same turn without approval
+
+  - id: rp-skip-one-liner
+    prompt: "Set the button margin-top to 8px in button.phtml."
+    fixture: cloud-shaped
+    should_trigger: false
+    max_depth: L0
+    expected_outcomes:
+      - Direct edit
+    forbidden:
+      - Formal requirements plan document
+
+  - id: rp-ado-not-jira
+    prompt: "Plan the fix for ADO work item 12345: customer validation bug. We use Azure DevOps."
+    fixture: cloud-shaped
+    should_trigger: true
+    max_depth: L1
+    expected_outcomes:
+      - Uses pasted text or Azure DevOps MCP if present
+      - Does not require Jira
+    forbidden:
+      - Insists on Jira MCP
