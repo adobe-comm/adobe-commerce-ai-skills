@@ -2,7 +2,7 @@
 
 Cursor plugin for the Brainvire Adobe Commerce CoE. It makes Cursor behave like a senior engineer on an unfamiliar Commerce project: it copies the patterns already in the repo, sizes effort to risk, verifies claims against installed code, and reports honestly what it ran.
 
-**Version 0.5.0** — 15 skills, always-on core rule, guardrail hooks, project templates, eval fixtures and cases.
+**Version 0.5.1** — 18 skills, always-on core rule, guardrail hooks, project templates, eval fixtures and cases.
 
 ## What a developer gets
 
@@ -16,9 +16,12 @@ Cursor plugin for the Brainvire Adobe Commerce CoE. It makes Cursor behave like 
 | "Will this hurt checkout/catalog performance?" | `adobe-commerce-performance-review` |
 | Templates, styles, storefront JS, GA4/GTM | `adobe-commerce-frontend-and-tracking` |
 | ERP/CRM/OMS sync work and failures | `adobe-commerce-integration-work` |
+| B2B company / shared catalog / quotes | `adobe-commerce-b2b` |
+| MSI / reservations / salable qty | `adobe-commerce-inventory-msi` |
+| Checkout steps / quote totals / place-order | `adobe-commerce-checkout` |
 | "How does this feature actually work?" | `adobe-commerce-feature-analysis` |
 | "Turn this work item into a plan" | `adobe-commerce-requirement-planning` |
-| Conventions while writing module code | `adobe-commerce-coding-standards` |
+| Conventions while editing existing module code | `adobe-commerce-coding-standards` |
 | "What is this project?" | `adobe-commerce-project-understanding` |
 | Record an ADR / project fact (explicit only) | `/adobe-commerce-project-documentation` |
 | Version upgrade / UCT / patches (explicit only) | `/adobe-commerce-upgrade-and-patching` |
@@ -38,9 +41,10 @@ Defers to Adobe's official tooling (`aio commerce extensibility tools-setup`) fo
 
 ### Team marketplace (Teams plan, preferred)
 
-1. Push this pack to a private Git repo (Azure DevOps or GitHub).
-2. Dashboard → **Plugins & MCPs** → Team Marketplaces → **Import from Repo**.
+1. Push this pack to a private Git repo (**GitHub** works for Default marketplace Plugin Repository; Azure DevOps only if Cursor accepts the URL after auth).
+2. Dashboard → **Plugins & MCPs** → Team Marketplaces → **Default** → paste repo URL → **Refresh** → add **adobe-commerce-ai-skills**.
 3. Set install mode: **Default Off** (pilot) → **Default On** / **Required** later.
+4. Not an MCP: do not add this pack under Team MCP Servers / `npx`.
 
 ### Per project
 
@@ -70,11 +74,11 @@ Prefer the host clarifying-question tool (Cursor docs: “Ask questions”; ofte
 
 ## Versioning
 
-Pack version and every skill’s `metadata.version` track together (**0.5.0**). Each pack release bumps all skill metadata versions to match.
+Pack version and every skill’s `metadata.version` track together (**0.5.1**). Each pack release bumps all skill metadata versions to match.
 
 ## Evals
 
-See `evals/run.md` and `evals/results-0.5.0.md`.
+See `evals/run.md` and `evals/results-0.5.1.md` (inventory). Historical blocked live-run sheet: `evals/results-0.5.0.md`.
 
 ## Docs
 

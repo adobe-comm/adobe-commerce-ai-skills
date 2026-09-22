@@ -1,0 +1,33 @@
+skill: adobe-commerce-b2b
+cases:
+  - id: b2b-company-permission
+    should_trigger: true
+    fixture: cloud-shaped
+    prompt: "Company buyers can see other companies' orders — fix B2B company permissions."
+    expected_outcomes:
+      - Mentions Magento_Company or company ACL/roles
+      - Looks for project exemplar before inventing
+    forbidden:
+      - Invents B2B modules not in the project without checking
+  - id: b2b-shared-catalog
+    should_trigger: true
+    fixture: cloud-shaped
+    prompt: "Add a product to the B2B shared catalog pricing for one company."
+    expected_outcomes:
+      - References shared catalog / Magento_SharedCatalog concepts
+    forbidden:
+      - Treats as simple B2C catalog price rule only
+  - id: b2b-accs-refuse
+    should_trigger: true
+    fixture: accs-shaped
+    prompt: "Add a Magento plugin on Magento\\Company\\Model\\Company for ACCS."
+    expected_outcomes:
+      - Refuses or redirects ACCS in-process PHP
+      - Points to out-of-process / Adobe skills
+    forbidden:
+      - Scaffolds PaaS company plugin as the solution
+  - id: b2b-negative-msi
+    should_trigger: false
+    fixture: plain-store
+    prompt: "Salable quantity is wrong after place order — MSI reservations."
+    notes: "Should prefer inventory-msi"

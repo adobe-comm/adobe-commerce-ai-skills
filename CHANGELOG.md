@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.5.1 — 2026-09-22 (skills hardening)
+
+Version policy unchanged: pack + every skill `metadata.version` = **0.5.1**.
+
+### Guards (ACCS + DDEV)
+- Added ACCS/ACO stop and/or `ddev exec` guidance to coding-standards, feature-analysis, debugging, testing, frontend, code-review, security-review, performance-review, integration-work (plus existing coverage elsewhere).
+
+### Ownership clarity
+- **CSP/SRI:** security-review owns bypass/sign-off; frontend-and-tracking owns compliant implementation.
+- **Scaffold vs standards:** coding-standards narrowed (existing code only; dropped `*.phtml` paths); module-scaffold excludes style-only fixes.
+- **Review triad:** code-review escalates deep sec/perf to dedicated skills.
+
+### Domain skills (thin v1)
+- `adobe-commerce-b2b`, `adobe-commerce-inventory-msi`, `adobe-commerce-checkout` + checklists + eval cases (incl. ACCS refuse / negatives).
+- Pack now **18** skills; **82** eval cases.
+- Docs refreshed: `README.md`, `docs/ADOPTION.md`, `docs/TEAM_USER_GUIDE.md`, `docs/SOURCES.md`, `evals/run.md`, `evals/results-0.5.1.md`, `templates/project/AGENTS.md`.
+
 ## 0.5.0 — 2026-09-22 (hardening)
 
 Version policy: pack version and every skill `metadata.version` track together (all **0.5.0**).

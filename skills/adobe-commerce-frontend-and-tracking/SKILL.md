@@ -3,12 +3,13 @@ name: adobe-commerce-frontend-and-tracking
 description: >
   Guides Adobe Commerce storefront and admin front-end work (templates, layout
   XML, LESS/CSS, RequireJS, Knockout and UI components, Alpine and Hyva, Edge
-  Delivery blocks and drop-ins) and analytics or tracking work (dataLayer, Google
-  Tag Manager, GA4, Adobe Analytics), including consent gating and the CSP and
-  SRI constraints that apply on checkout and payment pages. Use for any template,
-  style, storefront JavaScript, or tracking change. Do not use for backend-only
-  logic, and defer Edge Delivery drop-in internals to Adobe's official skills
-  when they are installed.
+  Delivery blocks) and analytics wiring (dataLayer, GTM, GA4, Adobe Analytics)
+  including consent gating. Implements scripts against the project's existing
+  CSP/SRI policy; escalate CSP/SRI *bypass or exception* requests to
+  security-review. Use for template, style, storefront JS, or tracking changes.
+  Do not use for backend-only PHP logic, coding-standards-only refactors, or
+  full security audits. Defer Edge Delivery drop-in internals to Adobe skills
+  when installed.
 paths:
   - "**/view/**"
   - "**/*.phtml"
@@ -19,41 +20,48 @@ paths:
   - "blocks/**"
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.0"
+  version: "0.5.1"
   verified-against: "Adobe SRI/CSP docs 2026-09-22; Adobe storefront AI tooling 2026-09-22"
 ---
 
 # Frontend and tracking
 
+## When to use / skip
+
+Use: templates, layout, theme CSS/JS, Hyva/Alpine, dataLayer/GTM/GA4 wiring.
+Skip: backend-only; new Magento module scaffold; CSP bypass *approval* (security-review); ACCS Luma theme work that does not exist — use headless/EDS/Adobe skills.
+
 ## Procedure
 
-1. Detect the stack before editing: Luma/Blank, Hyva, headless/PWA, or Edge Delivery. Check `app/design`, theme `composer.json`, `blocks/`, and `scripts/initializers/`. Never assume Luma.
-2. For Edge Delivery drop-ins, prefer Adobe's boilerplate skills and dropins MCP when installed; follow their conventions instead of Magento theme patterns.
+1. **Platform:** on ACCS/ACO, do not assume Luma/Blank PHP themes; prefer headless/EDS/drop-ins and Adobe official skills. On PaaS/on-prem, detect stack before editing: Luma/Blank, Hyva, headless/PWA, or Edge Delivery (`app/design`, theme `composer.json`, `blocks/`, `scripts/initializers/`). Never assume Luma.
+2. For Edge Delivery drop-ins, prefer Adobe's boilerplate skills and dropins MCP when installed.
 3. Change at the right layer:
    - Content and markup: template in the project's own theme, never in `vendor/`
    - Structure and block wiring: layout XML in the theme or module
    - Styles: the project's LESS/CSS entry points and variables, not inline styles
-   - Behaviour: the project's existing JS pattern (RequireJS module, UI component, Alpine component) — mirror an existing file
+   - Behaviour: the project's existing JS pattern (RequireJS, UI component, Alpine) — mirror an existing file
 4. Respect theme fallback: override the narrowest scope that achieves the result.
+5. Prefix Magento/static commands with `ddev exec` when `.ddev/` exists. Never target production.
 
 ## Tracking
 
-1. Trace only the layers that exist. Establish which are present before proposing a change: event source in code, `dataLayer` push, tag manager container, and the destination tool.
-2. Do not assume GTM, GA4, or Adobe Analytics exist. Find the container or the script include first.
-3. Check for duplicate firing (server-rendered push plus JS push), correct event naming against the project's existing schema, and that values are typed consistently.
-4. Check consent gating: if the project has a consent mechanism, tracking must respect it. Say so explicitly when no consent layer exists.
+1. Trace only the layers that exist: event source, `dataLayer` push, tag manager container, destination tool.
+2. Do not assume GTM, GA4, or Adobe Analytics exist. Find the container or script include first.
+3. Check duplicate firing, event naming vs project schema, typed values, and consent gating.
 
-## CSP and SRI on checkout and payment
+## CSP and SRI (implementation vs review)
 
-Any script added to checkout or payment pages, including analytics and tag managers, must be checked against `Magento_Csp` policy and the project's whitelist and nonce mechanism. Adobe's guidance is not to disable CSP or remove SRI in production; a bypass is a last-resort hotfix needing security review. Verify the behaviour of the installed version rather than assuming a release line. Escalate script-inventory and integrity obligations under PCI DSS 4.0 to the client's QSA rather than asserting requirement numbers.
+- **This skill:** wire scripts/tags to comply with existing `Magento_Csp` whitelist/nonce; verify installed behaviour via terminal.
+- **security-review:** owns approving any CSP/SRI bypass or payment-page exception.
+- Do not disable CSP or strip SRI. Do not invent PCI requirement numbers — escalate to the client's QSA via security-review wording.
 
 ## Validation
 
-Name a concrete browser checklist (pages, viewports, logged-in and guest where relevant), and run the project's existing front-end or E2E tests that cover the area. Report honestly what was and was not executed.
+Name a concrete browser checklist; run existing front-end/E2E tests when present. Report honestly what ran.
 
 ## Must not
 
-- Edit files under `vendor/`, `generated/`, or `pub/static/`.
-- Add inline styles or scripts where the project has a pattern for them.
-- Introduce a tracking library the project does not already use without asking.
-- Claim a visual result without having viewed it, unless the developer will verify.
+- Edit `vendor/`, `generated/`, or `pub/static/`.
+- Add inline styles/scripts where the project has a pattern.
+- Introduce a tracking library the project does not use without asking.
+- Approve security bypasses (hand to security-review).

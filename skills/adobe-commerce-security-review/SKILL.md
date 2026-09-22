@@ -7,21 +7,29 @@ description: >
   and personal-data handling, payment-page CSP and SRI constraints, third-party
   scripts, and new Composer or extension dependencies. Use for changes touching
   customer data, checkout or payment, admin controllers, APIs, integrations,
-  file uploads, or injected third-party scripts. Do not use for CSS or copy-only
-  edits, and do not produce generic OWASP summaries.
+  file uploads, or injected third-party scripts. Owns CSP/SRI *security review*
+  and bypass decisions on checkout/payment. Do not use for implementing
+  templates or GTM/dataLayer wiring (frontend-and-tracking), for CSS or
+  copy-only edits, or for generic OWASP summaries.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.0"
+  version: "0.5.1"
   verified-against: "Adobe SRI/CSP docs 2026-09-22; Magento_Csp behaviour"
 ---
 
 # Security review
 
+## When to use / skip
+
+Use: customer/order data, checkout/payment, admin/API auth, uploads, secrets, third-party scripts, CSP/SRI bypass requests.
+Skip: CSS/copy-only; implementing tracking tags (frontend owns wiring; escalate here for bypass/sign-off).
+ACCS/ACO: still review App Builder/API auth and secrets; do not demand in-process Magento ACL patterns that do not apply.
+
 ## When to depth-check
 
 Trigger a full pass when the change touches any of: customer or order data, checkout or payment, admin controllers or routes, REST/SOAP/GraphQL surface, file upload or import, integration credentials, third-party or tag-manager scripts, ACL, or new dependencies.
 
-Otherwise do a targeted check on the surfaces the diff actually touches.
+Otherwise do a targeted check on the surfaces the diff actually touches. Never connect to or probe production.
 
 ## Checks
 
@@ -31,11 +39,11 @@ Otherwise do a targeted check on the surfaces the diff actually touches.
 4. **SQL**: bound parameters only; never concatenate request values into queries or `ORDER BY`.
 5. **Secrets**: no credentials in code, XML, fixtures, or logs. Use environment/config with the project's existing mechanism. Never print secret values, even redacted, when a path reference suffices.
 6. **Payment data**: tokenized flows only. No PAN/CVV in code, logs, or test fixtures.
-7. **CSP and SRI**: `Magento_Csp` ships integrity hashes for local JavaScript and restricts payment pages. Adobe's guidance is not to disable CSP or strip SRI in production; treat any bypass as a last-resort hotfix with security sign-off. Any script added to checkout or payment pages, including analytics and tag managers, must be checked against the project's CSP whitelist and nonce mechanism. Confirm the applicable version behaviour against the project's installed `Magento_Csp` rather than assuming a release line.
+7. **CSP and SRI (this skill owns the security decision):** `Magento_Csp` integrity hashes and payment-page restrictions. Do **not** approve disabling CSP or stripping SRI in production without security sign-off. Confirm installed `Magento_Csp` via terminal. Frontend-and-tracking implements scripts against existing policy; **bypass or exception requests are reviewed here**.
 8. **Supply chain**: new Composer packages and third-party modules need a reason, a maintained source, and a version constraint. Check Adobe security bulletins for the project's version when the change touches a patched area.
 9. **Personal data**: log identifiers, not payloads. Respect the project's data-retention and masking conventions.
 
-Complement with Cursor's built-in `/review-security` when available.
+Complement with Cursor's built-in `/review-security` when available. Prefix local Magento CLI with `ddev exec` when `.ddev/` exists.
 
 ## Must not
 
@@ -43,6 +51,7 @@ Complement with Cursor's built-in `/review-security` when available.
 - Report theoretical issues without a concrete path in this change.
 - Recommend disabling a security control to simplify an implementation.
 - State a PCI DSS requirement number as fact; describe the obligation and route confirmation to the client's QSA.
+- Implement storefront GTM/dataLayer wiring (hand back to frontend-and-tracking).
 
 ## Output
 

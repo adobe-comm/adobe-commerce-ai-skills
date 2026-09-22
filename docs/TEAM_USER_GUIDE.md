@@ -1,7 +1,7 @@
 # Adobe Commerce AI Skills — Team User Guide
 
 **Pack:** `adobe-commerce-ai-skills`  
-**Version:** 0.4.0  
+**Version:** 0.5.1  
 **Audience:** Brainvire Adobe Commerce CoE engineers  
 **Owner:** Adobe Commerce CoE  
 
@@ -28,10 +28,10 @@ It covers **PaaS / on-premises PHP** Magento work. For App Builder, Edge Deliver
 ### Option A — Team marketplace (preferred, when CoE publishes it)
 
 1. Open Cursor → **Customize** (sidebar).
-2. Find **adobe-commerce-ai-skills** under the team marketplace.
+2. Find **adobe-commerce-ai-skills** under the team marketplace (admin: Dashboard → Plugins & MCPs → Default marketplace → Plugin Repository = this pack’s **GitHub** URL → Refresh).
 3. Click **Install**.
 4. Reload Window: Command Palette → **Developer: Reload Window**.
-5. Confirm under **Customize → Skills** that `adobe-commerce-*` skills appear.
+5. Confirm under **Customize → Skills** that `adobe-commerce-*` skills appear (expect **18** skills at pack 0.5.1).
 
 Install modes (set by admin):
 
@@ -40,6 +40,8 @@ Install modes (set by admin):
 | Default Off | You install when you want it |
 | Default On | Installed for you; you can opt out |
 | Required | Always on; cannot uninstall |
+
+This pack is **not** an MCP — do not add it under Team MCP Servers / `npx`.
 
 ### Option B — Install into one Magento project (pilot / no marketplace yet)
 
@@ -158,18 +160,23 @@ Vendor changes must go through your project’s **Composer patch** process, not 
 | Turn an Azure DevOps ticket into a plan | `adobe-commerce-requirement-planning` |
 | Trace how a feature works before changing it | `adobe-commerce-feature-analysis` |
 | Create plugin / observer / patch / CLI / cron / consumer / GraphQL / admin config | **`adobe-commerce-module-scaffold`** |
-| Write PHP/XML to project + Magento standards | `adobe-commerce-coding-standards` |
+| Write PHP/XML conventions on **existing** module code | `adobe-commerce-coding-standards` |
 | Find why something is broken | **`adobe-commerce-debugging`** |
 | Choose/run tests; honest validation | `adobe-commerce-testing` |
 | Review a PR / diff | `adobe-commerce-code-review` |
-| Security check (PII, checkout, admin, secrets) | `adobe-commerce-security-review` |
+| Security check (PII, checkout, admin, secrets, **CSP bypass**) | `adobe-commerce-security-review` |
 | Performance on hot paths | `adobe-commerce-performance-review` |
-| Theme / storefront JS / GTM / GA4 | `adobe-commerce-frontend-and-tracking` |
+| Theme / storefront JS / GTM / GA4 (implement vs existing CSP) | `adobe-commerce-frontend-and-tracking` |
 | ERP/CRM/OMS sync or payload work | `adobe-commerce-integration-work` |
+| B2B company / shared catalog / quotes | `adobe-commerce-b2b` |
+| MSI / reservations / salable qty | `adobe-commerce-inventory-msi` |
+| Checkout steps / quote totals / place-order | `adobe-commerce-checkout` |
 | Record an ADR or project fact | `/adobe-commerce-project-documentation` only |
 | Version upgrade / UCT / patches | `/adobe-commerce-upgrade-and-patching` only |
 | Cloud / App Builder deploy | `/adobe-commerce-deploy-and-environments` only |
 | App Builder / EDS drop-ins | Adobe official skills (not this pack) |
+
+**Ownership shortcuts (0.5.1):** new extension points → scaffold; existing PHP/XML style → coding-standards; GTM/templates → frontend; CSP *bypass* → security-review; salable qty → inventory-msi; company/quotes → b2b; checkout steps/totals → checkout.
 
 ---
 
@@ -214,7 +221,7 @@ Please report:
 - Hook blocked something it should have allowed (false positive)
 - Missing Magento pattern your projects always use
 
-Send feedback to the Adobe Commerce CoE pack owner with: project name, Cursor version, pack version (`0.4.0`), and a short chat excerpt.
+Send feedback to the Adobe Commerce CoE pack owner with: project name, Cursor version, pack version (`0.5.1`), and a short chat excerpt.
 
 ---
 
@@ -227,6 +234,7 @@ Send feedback to the Adobe Commerce CoE pack owner with: project name, Cursor ve
 | `CHANGELOG.md` | What changed per version |
 | `hooks/README.md` | Guardrail technical detail |
 | `evals/run.md` | Formal skill scoring (pilot QA) |
+| `evals/results-0.5.1.md` | Case inventory for pack 0.5.1 |
 | `docs/VERIFICATION.md` | Design decisions / research log |
 
 ---

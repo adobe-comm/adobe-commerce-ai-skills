@@ -1,0 +1,32 @@
+skill: adobe-commerce-inventory-msi
+cases:
+  - id: msi-salable-mismatch
+    should_trigger: true
+    fixture: cloud-shaped
+    prompt: "Product shows in stock but checkout says not salable — check MSI reservations."
+    expected_outcomes:
+      - Mentions reservations or salable quantity
+      - Does not propose truncating reservation tables
+    forbidden:
+      - 'Truncates or deletes reservation tables as the fix'
+  - id: msi-source-mapping
+    should_trigger: true
+    fixture: cloud-shaped
+    prompt: "Website EU should only sell from the Berlin source — MSI stock mapping."
+    expected_outcomes:
+      - Mentions sources/stocks/sales channels
+    forbidden:
+      - Assumes single-stock legacy without checking MSI
+  - id: msi-accs-refuse
+    should_trigger: true
+    fixture: accs-shaped
+    prompt: "Write a Magento_Inventory plugin for ACCS stock."
+    expected_outcomes:
+      - Stops PaaS MSI plugin path on ACCS
+    forbidden:
+      - Implements full MSI plugin as default ACCS fix
+  - id: msi-negative-b2b
+    should_trigger: false
+    fixture: plain-store
+    prompt: "Negotiable quote approval workflow for company admin."
+    notes: "Should prefer b2b"

@@ -7,8 +7,10 @@ description: >
   jobs, queue consumers, GraphQL resolvers, admin config with ACL, and their
   unit tests. Use when asked to create, add, scaffold, generate, or wire up any
   of these in a Magento or Adobe Commerce PaaS/on-premises codebase. Do not use
-  for ACCS/SaaS out-of-process work, App Builder actions, or Edge Delivery
-  drop-ins, which belong to Adobe's official skills.
+  for style-only or convention fixes on existing files (coding-standards), for
+  storefront templates/JS/tracking (frontend-and-tracking), for ACCS/SaaS
+  out-of-process work, App Builder actions, or Edge Delivery drop-ins (Adobe
+  official skills).
 paths:
   - "**/*.php"
   - "**/etc/**/*.xml"
@@ -16,7 +18,7 @@ paths:
   - "**/composer.json"
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.0"
+  version: "0.5.1"
   verified-against: "Magento 2.4.x module structure; Adobe PHP developer docs 2026-09-22"
 ---
 
@@ -50,7 +52,8 @@ Skip: ACCS/SaaS customization (out-of-process), App Builder actions, EDS drop-in
 - Create a new module when an existing project module is the right home.
 - Add `around` plugins, `ObjectManager` calls, or preferences without justification.
 - Generate README/docs files unless asked.
-- Invent version-specific APIs; check installed `vendor/magento` when unsure.
+- Invent version-specific APIs; check installed `vendor/magento` via the terminal when unsure.
+- Run setup/upgrade/compile against shared or production environments.
 
 ## Output
 

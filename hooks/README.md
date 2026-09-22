@@ -1,5 +1,7 @@
 # Guardrail hooks
 
+Ships with pack **0.5.1** (introduced 0.4.0). Behaviour unchanged in the skills-hardening release.
+
 ## Purpose
 
 Tool-level enforcement of rules that prompts alone cannot guarantee:

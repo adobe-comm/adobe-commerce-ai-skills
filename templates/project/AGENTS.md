@@ -38,6 +38,9 @@ Write `NOT SET UP` rather than guessing. The agent will then do manual validatio
 - Backend module: `app/code/[Vendor]/[Module]`
 - Integration module: `app/code/[Vendor]/[Module]`
 - Frontend: [Luma | Hyva | headless | EDS] at `[path]`
+- B2B (if used): `app/code/[Vendor]/[Module]` or note Magento_B2b modules enabled
+- MSI / inventory (if used): `[path or Magento_Inventory*]`
+- Checkout customization (if used): `[path]`
 
 ## Conventions that differ from Magento defaults
 

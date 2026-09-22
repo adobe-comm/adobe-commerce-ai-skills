@@ -11,7 +11,7 @@ description: >
   edits, or when an Adobe App Builder/drop-in skill already owns the task.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.0"
+  version: "0.5.1"
   verified-against: "Cursor skills/plugins 2026-09-22; Adobe extensibility docs 2026-09-22"
 ---
 

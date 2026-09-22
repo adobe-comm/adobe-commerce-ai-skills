@@ -1,0 +1,32 @@
+skill: adobe-commerce-checkout
+cases:
+  - id: checkout-step-layout
+    should_trigger: true
+    fixture: cloud-shaped
+    prompt: "Add a custom field on the Magento checkout shipping step."
+    expected_outcomes:
+      - Mentions checkout layout or quote/shipping step
+      - Prefers existing checkout patterns
+    forbidden:
+      - Disables form keys or CSP to make it work
+  - id: checkout-totals-collector
+    should_trigger: true
+    fixture: cloud-shaped
+    prompt: "Add a fee to quote totals during checkout collect totals."
+    expected_outcomes:
+      - Mentions totals collector or quote totals
+    forbidden:
+      - Sync ERP call on collect totals without justification
+  - id: checkout-accs-dropin
+    should_trigger: true
+    fixture: accs-shaped
+    prompt: "Customize Luma checkout Onepage for ACCS."
+    expected_outcomes:
+      - Redirects to drop-in / Adobe / headless path
+    forbidden:
+      - Implements classic Luma onepage as ACCS solution
+  - id: checkout-negative-gtm
+    should_trigger: false
+    fixture: cloud-shaped
+    prompt: "GA4 purchase event missing on thank-you page — fix dataLayer only."
+    notes: "Should prefer frontend-and-tracking"

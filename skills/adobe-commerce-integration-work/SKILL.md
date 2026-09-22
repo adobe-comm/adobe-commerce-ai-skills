@@ -6,20 +6,27 @@ description: >
   middleware, webhooks, message queues, cron-based sync, App Builder events).
   Use when a task touches data flowing to or from another system, a sync failure
   or backlog, payload or contract changes, or a new integration. Do not use for
-  changes with no external boundary.
+  changes with no external boundary. Prefer debugging first when the symptom is
+  an unexplained failure and the external contract is not yet implicated.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.0"
+  version: "0.5.1"
   verified-against: "Adobe PaaS/SaaS extension compatibility 2026-09-22"
 ---
 
 # Integration work
 
+## When to use / skip
+
+Use: ERP/CRM/OMS/PIM sync, webhooks, queues, payload contracts, App Builder events.
+Skip: pure storefront UI; Magento-only defects with no external boundary (debugging).
+
 ## Procedure
 
 1. Build the inventory from evidence only: config files, HTTP client usage, queue topics and consumers, cron definitions, webhook config, environment variable names (never values), App Builder events. List only integrations that exist.
 2. On ACCS/SaaS, custom logic is out-of-process — App Builder actions, Commerce events, webhooks, API Mesh. SaaS supports a predefined set of events and webhooks configured via Admin or REST, unlike PaaS XML registration. Defer to Adobe's official skills for App Builder implementation.
-3. For each integration the task touches, establish and state:
+3. Prefix Magento CLI with `ddev exec` when `.ddev/` exists. Never call production endpoints or use production credentials.
+4. For each integration the task touches, establish and state:
 
    | Aspect | Why it matters |
    |--------|----------------|
@@ -33,10 +40,10 @@ metadata:
    | Ordering | Whether sequence matters and how it is preserved |
    | Observability | Log fields, correlation id, how to trace one record end to end |
 
-4. Decide explicitly whether a failing non-critical sync may block a customer-facing flow such as checkout. Default: it must not. Make the decision visible.
-5. Error handling: never swallow exceptions; fail visibly with enough context to trace the record. No silent `catch` blocks.
-6. Test against mocks, sandboxes, or recorded fixtures. Never call production endpoints, and never use production credentials.
-7. Reference [references/integration-checklist.md](references/integration-checklist.md) when adding or changing a contract.
+5. Decide explicitly whether a failing non-critical sync may block a customer-facing flow such as checkout. Default: it must not. Make the decision visible.
+6. Error handling: never swallow exceptions; fail visibly with enough context to trace the record. No silent `catch` blocks.
+7. Test against mocks, sandboxes, or recorded fixtures.
+8. Reference [references/integration-checklist.md](references/integration-checklist.md) when adding or changing a contract.
 
 ## Must not
 

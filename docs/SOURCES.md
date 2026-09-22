@@ -1,14 +1,16 @@
 # Sources index
 
-Copied from the build prompt Appendix A and updated where Phase 0 found corrections. Verified reachable 2026-09-22 unless noted.
+Copied from the build prompt Appendix A and updated where Phase 0 / 0.5.x found corrections. Verified reachable 2026-09-22 unless noted. Pack status: **0.5.1** (18 skills).
 
 ## Cursor
 
 - S1 Skills: https://cursor.com/docs/skills.md
 - S2 Plugins: https://cursor.com/docs/plugins.md ; reference: https://cursor.com/docs/reference/plugins
+- S2 Team marketplaces: https://cursor.com/docs/plugins.md#team-marketplaces
 - S3 Rules: https://cursor.com/docs/rules
 - S4 Hooks: https://cursor.com/docs/agent/hooks
 - S5 Ignore files: https://cursor.com/docs/context/ignore-files
+- Clarifying questions (“Ask questions”): https://cursor.com/docs/agent/overview — exact tool id `AskQuestion` remains community-sourced; skills soft-match
 - CLI headless: https://cursor.com/docs/cli/headless.md
 - Evals / SDK: https://cursor.com/docs/evals ; https://cursor.com/docs/sdk/typescript
 

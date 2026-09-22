@@ -239,6 +239,16 @@ Primary Cursor docs (`https://cursor.com/docs/agent/overview`) document the capa
 
 Added plain-language caveat to `docs/TEAM_USER_GUIDE.md` Guardrails section: shell guard blocks obvious commands, can be bypassed by obfuscation; safety net ≠ CI/review. Hook `failClosed: false` unchanged.
 
-## 0.5.0 Task 6 — Version policy
+## 0.5.1 — Skills hardening (2026-09-22)
 
-**Policy: pack and skill `metadata.version` track together.** All 15 skills + `.cursor-plugin/plugin.json` set to **0.5.0**. Stated in README and CHANGELOG.
+Closed the three CoE follow-ups from the skills gap review:
+
+1. **ACCS + DDEV** lines on skills that lacked them.
+2. **CSP ownership** (security vs frontend) and **scaffold vs coding-standards** description/path split.
+3. **Thin domain skills:** `adobe-commerce-b2b`, `adobe-commerce-inventory-msi`, `adobe-commerce-checkout`.
+
+Pack version **0.5.1**; 18 skills; 82 eval cases authored (live trigger scoring still pending auth).
+
+Docs aligned same day: ADOPTION, TEAM_USER_GUIDE, SOURCES, evals/run.md, results-0.5.1.md, AGENTS template exemplars for B2B/MSI/checkout.
+
+

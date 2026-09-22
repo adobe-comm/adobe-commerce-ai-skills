@@ -9,7 +9,7 @@ description: >
   already owns planning.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.0"
+  version: "0.5.1"
   verified-against: "CoE depth ladder; Adobe four-phase protocol cross-ref 2026-09-22"
 ---
 
@@ -26,14 +26,14 @@ Skip: precise single-file instruction; L0 spacing/copy.
    - If an Azure DevOps MCP is installed and a work item id/URL is given, read it through that MCP.
    - Else use the pasted ticket/story text. Do not assume Jira.
 2. Classify depth L0–L3 with a one-line justification (see core rule ladder). Escalate if investigation shows wider blast radius.
-3. Extract acceptance criteria. Mark ambiguous criteria as OPEN — use AskQuestion (or one A/B/C chat question) only if the answer changes the plan.
+3. Extract acceptance criteria. Mark ambiguous criteria as OPEN — prefer the host clarifying-question tool when available; else one A/B/C chat question only if the answer changes the plan.
 4. Plan size by level:
    - L1: 3–6 bullets (files/pattern, test).
    - L2: files, DB/API impact, backward compatibility, rollout/config, validation.
    - L3: detailed plan; **stop for developer approval before coding**.
 5. State what will **not** change.
-6. For App Builder / ACCS SaaS / drop-in storefront work: defer to Adobe official skills and their four-phase protocol (requirements → approved plan → code → docs/validation). Do not invent a parallel protocol.
-7. Name validation approach honestly (which tests exist in this project — discover, do not invent).
+6. For App Builder / ACCS SaaS / drop-in storefront work: defer to Adobe official skills and their four-phase protocol (requirements → approved plan → code → docs/validation). Do not invent a parallel protocol. Name `ddev exec` in validation commands when `.ddev/` exists.
+7. Name validation approach honestly (which tests exist in this project — discover, do not invent). For B2B / MSI / checkout domain tickets, point the implementation plan at those skills.
 
 ## Must not
 
