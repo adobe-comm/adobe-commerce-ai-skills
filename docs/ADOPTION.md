@@ -1,6 +1,6 @@
 # Adoption guide
 
-**Current pack:** `adobe-commerce-ai-skills` **0.5.1** (18 skills).
+**Current pack:** `adobe-commerce-ai-skills` **0.5.2** (18 skills). Live eval sheet: `evals/results-0.5.2.md`.
 
 ## Distribution (Teams plan)
 

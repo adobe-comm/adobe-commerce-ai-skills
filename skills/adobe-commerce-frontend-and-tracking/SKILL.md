@@ -6,10 +6,12 @@ description: >
   Delivery blocks) and analytics wiring (dataLayer, GTM, GA4, Adobe Analytics)
   including consent gating. Implements scripts against the project's existing
   CSP/SRI policy; escalate CSP/SRI *bypass or exception* requests to
-  security-review. Use for template, style, storefront JS, or tracking changes.
-  Do not use for backend-only PHP logic, coding-standards-only refactors, or
-  full security audits. Defer Edge Delivery drop-in internals to Adobe skills
-  when installed.
+  security-review. Use for template, style (including L0 button/spacing/CSS),
+  storefront JS, or tracking changes. Do not use for backend-only PHP logic,
+  coding-standards-only refactors, full security audits, checkout quote/totals/
+  place-order logic (checkout), or CSP *violation incidents* framed as "broken /
+  quickest fix" root-cause (debugging — never disable CSP). Defer Edge Delivery
+  drop-in internals to Adobe skills when installed.
 paths:
   - "**/view/**"
   - "**/*.phtml"
@@ -20,7 +22,7 @@ paths:
   - "blocks/**"
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe SRI/CSP docs 2026-09-22; Adobe storefront AI tooling 2026-09-22"
 ---
 

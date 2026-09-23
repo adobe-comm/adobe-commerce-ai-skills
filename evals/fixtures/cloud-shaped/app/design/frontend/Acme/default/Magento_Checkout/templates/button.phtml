@@ -1,12 +1,18 @@
 <?php
 /** @var \Magento\Framework\View\Element\Template $block */
 ?>
-<button type="submit" class="action primary checkout" style="margin-top: 2px;">
-    <span><?= $block->escapeHtml(__('Place Order')) ?></span>
+<button type="submit" class="action primary checkout" style="margin-top: 8px;">
+    <span style="font-weight: bold;"><?= $block->escapeHtml(__('Place Order')) ?></span>
 </button>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: 'begin_checkout' });
-</script>
+<?php
+$beginCheckoutScript = <<<'JS'
+window.dataLayer = window.dataLayer || [];
+window.dataLayer.push({ event: 'begin_checkout' });
+JS;
+$gtmFixtureScript = <<<'JS'
+(function(w,d,s,l,i){w[l]=w[l]||[];})(window,document,'script','dataLayer','GTM-FIXTURE');
+JS;
+?>
+<?= /* @noEscape */ $block->getSecureRenderer()->renderTag('script', [], $beginCheckoutScript, false) ?>
 <!-- GTM snippet present for fixture presence tests -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];})(window,document,'script','dataLayer','GTM-FIXTURE');</script>
+<?= /* @noEscape */ $block->getSecureRenderer()->renderTag('script', [], $gtmFixtureScript, false) ?>

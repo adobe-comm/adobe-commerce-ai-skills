@@ -1,0 +1,47 @@
+<?php
+/**
+ * @var \Magento\Checkout\Block\Onepage\Success $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="checkout-success">
+    <?php if ($block->getOrderId()) : ?>
+        <p><?= $escaper->escapeHtml(__('Your order number is: %1.', $block->getOrderId())) ?></p>
+    <?php endif; ?>
+    <p><?= $escaper->escapeHtml(__('Thank you for your purchase!')) ?></p>
+</div>
+<?php
+$order = $block->getOrder();
+if ($order && $order->getId()) {
+    $items = [];
+    foreach ($order->getAllVisibleItems() as $item) {
+        $items[] = [
+            'item_id' => $item->getSku(),
+            'item_name' => $item->getName(),
+            'price' => (float) $item->getPrice(),
+            'quantity' => (float) $item->getQtyOrdered(),
+        ];
+    }
+    $purchasePayload = [
+        'event' => 'purchase',
+        'ecommerce' => [
+            'transaction_id' => (string) $order->getIncrementId(),
+            'value' => (float) $order->getGrandTotal(),
+            'tax' => (float) $order->getTaxAmount(),
+            'shipping' => (float) $order->getShippingAmount(),
+            'currency' => (string) $order->getOrderCurrencyCode(),
+            'items' => $items,
+        ],
+    ];
+    $purchaseScript = sprintf(
+        "window.dataLayer = window.dataLayer || [];\nwindow.dataLayer.push(%s);",
+        json_encode(
+            $purchasePayload,
+            JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT
+        )
+    );
+    ?>
+<?= /* @noEscape */ $block->getSecureRenderer()->renderTag('script', [], $purchaseScript, false) ?>
+    <?php
+}
+?>

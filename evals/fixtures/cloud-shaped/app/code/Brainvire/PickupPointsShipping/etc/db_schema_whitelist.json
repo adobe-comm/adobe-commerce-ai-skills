@@ -1,0 +1,27 @@
+{
+    "brainvire_pickup_point": {
+        "column": {
+            "entity_id": true,
+            "name": true,
+            "street": true,
+            "city": true,
+            "postcode": true,
+            "country_id": true,
+            "is_active": true,
+            "sort_order": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "pickup_point_id": true
+        }
+    },
+    "sales_order_address": {
+        "column": {
+            "pickup_point_id": true
+        }
+    }
+}

@@ -7,11 +7,12 @@ description: >
   Use when changing checkout, cart-to-order, payment/shipping display on checkout,
   or quote collectors. Do not use for payment gateway PCI/token vault security
   audits (security-review), for GTM purchase tags alone (frontend-and-tracking),
+  for L0 CSS/spacing-only tweaks on checkout buttons (frontend-and-tracking),
   for MSI salable qty root cause (inventory-msi), or for ACCS headless checkout
   owned by Adobe drop-in skills.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Magento Checkout / Quote APIs; CoE PaaS scope 2026-09-22"
 ---
 

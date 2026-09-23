@@ -4,13 +4,16 @@ description: >
   Analyzes and changes integrations between Adobe Commerce and external systems
   (ERP, CRM, Odoo, PIM, OMS, WMS, payment, shipping, tax, marketing platforms,
   middleware, webhooks, message queues, cron-based sync, App Builder events).
-  Use when a task touches data flowing to or from another system, a sync failure
+  Use when a task changes data flowing to or from another system, a sync failure
   or backlog, payload or contract changes, or a new integration. Do not use for
-  changes with no external boundary. Prefer debugging first when the symptom is
-  an unexplained failure and the external contract is not yet implicated.
+  a read-only map of which integrations exist (project-understanding), for
+  changes with no external boundary, or when the only ask is how to store an API
+  key/secret safely without hardcoding (security-review). Prefer debugging first
+  when the symptom is an unexplained failure and the external contract is not
+  yet implicated.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe PaaS/SaaS extension compatibility 2026-09-22"
 ---
 

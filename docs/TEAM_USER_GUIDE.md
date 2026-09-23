@@ -1,7 +1,7 @@
 # Adobe Commerce AI Skills — Team User Guide
 
 **Pack:** `adobe-commerce-ai-skills`  
-**Version:** 0.5.1  
+**Version:** 0.5.2  
 **Audience:** Brainvire Adobe Commerce CoE engineers  
 **Owner:** Adobe Commerce CoE  
 
@@ -221,7 +221,7 @@ Please report:
 - Hook blocked something it should have allowed (false positive)
 - Missing Magento pattern your projects always use
 
-Send feedback to the Adobe Commerce CoE pack owner with: project name, Cursor version, pack version (`0.5.1`), and a short chat excerpt.
+Send feedback to the Adobe Commerce CoE pack owner with: project name, Cursor version, pack version (`0.5.2`), and a short chat excerpt.
 
 ---
 

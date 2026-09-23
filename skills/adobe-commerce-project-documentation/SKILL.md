@@ -11,7 +11,7 @@ description: >
 disable-model-invocation: true
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "CoE project-facts protocol; AGENTS.md studies guidance 2026-09-22"
 ---
 

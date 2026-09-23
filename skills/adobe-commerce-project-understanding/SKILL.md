@@ -4,14 +4,15 @@ description: >
   Builds a working understanding of an unfamiliar Adobe Commerce repository:
   detects the platform model (Cloud/PaaS, on-premises, ACCS, ACO, App Builder,
   Edge Delivery storefront), installed version signals, custom versus third-party
-  modules, and integrations actually present. Use when starting in a repo, when
-  asked how the project is structured, or before a task whose affected area is
-  unknown. Do not use to trace one feature's code path end-to-end (use
-  feature-analysis), when the affected files are already known, for CSS/copy-only
+  modules, and which integrations are actually present (inventory/map only). Use
+  when starting in a repo, when asked how the project is structured, or to list/
+  map integrations without changing them. Do not use to trace one feature's code
+  path end-to-end (feature-analysis), to change ERP/OMS payloads or sync code
+  (integration-work), when the affected files are already known, for CSS/copy-only
   edits, or when an Adobe App Builder/drop-in skill already owns the task.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Cursor skills/plugins 2026-09-22; Adobe extensibility docs 2026-09-22"
 ---
 

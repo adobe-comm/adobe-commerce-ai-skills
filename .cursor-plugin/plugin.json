@@ -1,6 +1,6 @@
 {
   "name": "adobe-commerce-ai-skills",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "Brainvire CoE Adobe Commerce plugin: scaffold, domain (B2B/MSI/checkout), debug, test, review, integrate, performance, docs, and vendor write guardrails.",
   "author": {
     "name": "Brainvire Adobe Commerce CoE"

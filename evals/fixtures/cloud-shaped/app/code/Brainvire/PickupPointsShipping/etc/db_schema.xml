@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="brainvire_pickup_point" resource="default" engine="innodb" comment="Pickup point locations">
+        <column xsi:type="int" name="entity_id" unsigned="true" nullable="false" identity="true"
+                comment="Entity ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Display name"/>
+        <column xsi:type="varchar" name="street" nullable="false" length="255" comment="Street"/>
+        <column xsi:type="varchar" name="city" nullable="false" length="128" comment="City"/>
+        <column xsi:type="varchar" name="postcode" nullable="false" length="32" comment="Postcode"/>
+        <column xsi:type="varchar" name="country_id" nullable="false" length="2" comment="Country ID"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1"
+                comment="Is active"/>
+        <column xsi:type="int" name="sort_order" unsigned="true" nullable="false" default="0"
+                comment="Sort order"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="entity_id"/>
+        </constraint>
+    </table>
+    <table name="quote_address">
+        <column xsi:type="int" name="pickup_point_id" unsigned="true" nullable="true"
+                comment="Selected pickup point entity ID"/>
+    </table>
+    <table name="sales_order_address">
+        <column xsi:type="int" name="pickup_point_id" unsigned="true" nullable="true"
+                comment="Selected pickup point entity ID"/>
+    </table>
+</schema>

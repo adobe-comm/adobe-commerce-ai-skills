@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <brainvire_erp>
+            <order_export>
+                <sandbox_url/>
+                <api_key/>
+                <max_attempts>5</max_attempts>
+                <initial_delay_seconds>2</initial_delay_seconds>
+                <max_delay_seconds>60</max_delay_seconds>
+                <connect_timeout_seconds>5</connect_timeout_seconds>
+                <read_timeout_seconds>30</read_timeout_seconds>
+            </order_export>
+            <stock_reservation>
+                <enabled>1</enabled>
+                <reservation_url/>
+                <connect_timeout_seconds>2</connect_timeout_seconds>
+                <read_timeout_seconds>8</read_timeout_seconds>
+                <block_checkout_on_failure>1</block_checkout_on_failure>
+            </stock_reservation>
+        </brainvire_erp>
+    </default>
+</config>

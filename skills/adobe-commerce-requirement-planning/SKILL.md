@@ -9,7 +9,7 @@ description: >
   already owns planning.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "CoE depth ladder; Adobe four-phase protocol cross-ref 2026-09-22"
 ---
 

@@ -16,7 +16,7 @@ paths:
   - "**/view/**/*.xml"
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "magento/magento-coding-standard; Adobe PHP developer practices 2026-09-22"
 ---
 

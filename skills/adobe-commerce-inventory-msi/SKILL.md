@@ -9,7 +9,7 @@ description: >
   permissions (b2b), or for checkout payment UI (checkout).
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Magento MSI / Inventory modules; CoE PaaS scope 2026-09-22"
 ---
 

@@ -11,7 +11,7 @@ description: >
   fit better, or for greenfield App Builder work owned by Adobe official skills.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe PHP DI/events patterns; Cursor skills 2026-09-22"
 ---
 

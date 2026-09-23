@@ -199,8 +199,8 @@ Created `evals/fixtures/vendor-probe-git/`: real `git init`, tracks only `.gitig
 
 | Check | Result | Date | Notes |
 |-------|--------|------|-------|
-| Read `vendor/magento/framework/ProbeInterface.php` with fixture as Agent workspace root | **inconclusive this session** | 2026-09-22 | `move_agent_to_root` aborted; `agent -p --workspace <fixture>` failed: Authentication required (no CURSOR_API_KEY; print mode not authenticated despite `agent status` showing login). Human can finish in 1 minute via fixture README. Per Cursor S5, direct Read/@ of gitignored paths is expected to fail when fixture is workspace root. |
-| Read `composer.lock` with fixture as Agent workspace root | **inconclusive this session** | 2026-09-22 | Same auth/workspace blocker. Cursor default-ignore list includes `composer.lock` (S5). |
+| Read `vendor/magento/framework/ProbeInterface.php` with fixture as Agent workspace root | **yes** | 2026-09-22 | 0.5.2 re-probe: `agent -p --workspace vendor-probe-git` used `readToolCall` successfully (`ProbeInterface`). Auth via `agent login` (riddhi.shah@brainvire.com). |
+| Read `composer.lock` with fixture as Agent workspace root | **yes** | 2026-09-22 | Same run: `readToolCall` succeeded; `magento/framework` **103.0.7**. |
 | Terminal `detect-stack.sh` on fixture | **yes** | 2026-09-22 | `framework-version: magento/framework@103.0.7 (composer.lock)`; `vendor-installed: vendor/magento` |
 | Terminal `cat` of ProbeInterface.php | **yes** | 2026-09-22 | Prints `interface ProbeInterface` |
 | Parent-workspace Read of fixture paths | yes (not valid for probe) | 2026-09-22 | Pack root is not a git repo, so parent Read success does **not** count |
@@ -211,7 +211,7 @@ Terminal route is **CONFIRMED**. Direct file-tool route remains expected-weak pe
 
 ### Stop condition
 
-Terminal route did **not** fail — continue hardening. Live Agent workspace-root Read still needs human open of `vendor-probe-git` or a working `CURSOR_API_KEY` for `agent -p`.
+Terminal route did **not** fail — continue hardening. **0.5.2 update:** Agent workspace-root direct `readToolCall` also succeeded for both `vendor/.../ProbeInterface.php` and `composer.lock` on `vendor-probe-git` (stream-json audited). Terminal-first guidance in core rule 5 remains correct as the reliable default; direct Read may work depending on Cursor version/ignore behaviour.
 
 ## 0.5.0 Task 3 — Deferred skills decision (before writing files)
 
@@ -239,7 +239,14 @@ Primary Cursor docs (`https://cursor.com/docs/agent/overview`) document the capa
 
 Added plain-language caveat to `docs/TEAM_USER_GUIDE.md` Guardrails section: shell guard blocks obvious commands, can be bypassed by obfuscation; safety net ≠ CI/review. Hook `failClosed: false` unchanged.
 
-## 0.5.1 — Skills hardening (2026-09-22)
+## 0.5.2 — Live eval + vendor direct-Read (2026-09-22)
+
+Closed the two remaining execution gaps from 0.5.0/0.5.1:
+
+1. **Auth:** `agent login` (riddhi.shah@brainvire.com) unblocked `agent -p`.
+2. **Vendor probe direct Read:** **yes** / **yes** (see Task 1 table update above).
+3. **Live eval:** `evals/results-0.5.2.md` — trigger **100.00%** (60/60 after 3 description re-runs; first pass 95%), false-trigger **0.00%** (0/22).
+
 
 Closed the three CoE follow-ups from the skills gap review:
 

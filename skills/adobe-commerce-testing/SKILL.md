@@ -11,7 +11,7 @@ description: >
   harnesses that the SaaS project does not have.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe Commerce testing guide 2026-09-22; 2.4.9 release notes (PHPUnit 12)"
 ---
 

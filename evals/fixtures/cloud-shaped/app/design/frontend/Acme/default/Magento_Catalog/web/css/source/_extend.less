@@ -1,0 +1,16 @@
+//
+// Category and search product grid — extra gutter between tiles
+//
+
+& when (@media-common = true) {
+    .products-grid {
+        margin-left: -(@indent__s + 4px);
+        margin-right: -(@indent__s + 4px);
+
+        .product-item {
+            padding-left: (@indent__s + 4px);
+            padding-right: (@indent__s + 4px);
+            margin-bottom: (@indent__base + 8px);
+        }
+    }
+}

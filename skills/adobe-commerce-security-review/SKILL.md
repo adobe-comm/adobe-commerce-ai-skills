@@ -4,16 +4,18 @@ description: >
   Reviews Adobe Commerce changes for security risk in proportion to the change:
   admin and API authorization and ACL, input validation and output escaping,
   CSRF and form keys, SQL parameter binding, API and GraphQL exposure, secrets
-  and personal-data handling, payment-page CSP and SRI constraints, third-party
-  scripts, and new Composer or extension dependencies. Use for changes touching
-  customer data, checkout or payment, admin controllers, APIs, integrations,
-  file uploads, or injected third-party scripts. Owns CSP/SRI *security review*
-  and bypass decisions on checkout/payment. Do not use for implementing
-  templates or GTM/dataLayer wiring (frontend-and-tracking), for CSS or
-  copy-only edits, or for generic OWASP summaries.
+  and credential storage (env/config — never hardcode API keys), personal-data
+  handling, payment-page CSP and SRI constraints, third-party scripts, and new
+  Composer or extension dependencies. Use when asked to store or handle secrets/
+  API keys safely, or for changes touching customer data, checkout or payment,
+  admin controllers, APIs, integrations, file uploads, or injected third-party
+  scripts. Owns CSP/SRI *security review* and bypass decisions on checkout/payment.
+  Do not use for implementing templates or GTM/dataLayer wiring
+  (frontend-and-tracking), for ERP payload/contract design (integration-work),
+  for CSS or copy-only edits, or for generic OWASP summaries.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe SRI/CSP docs 2026-09-22; Magento_Csp behaviour"
 ---
 

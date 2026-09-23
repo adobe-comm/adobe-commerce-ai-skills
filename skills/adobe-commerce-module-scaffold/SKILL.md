@@ -18,7 +18,7 @@ paths:
   - "**/composer.json"
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Magento 2.4.x module structure; Adobe PHP developer docs 2026-09-22"
 ---
 

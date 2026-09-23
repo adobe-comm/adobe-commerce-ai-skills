@@ -3,11 +3,22 @@ declare(strict_types=1);
 
 namespace Acme\CustomerValidate\Model;
 
+use Magento\Framework\Validator\EmailAddress as EmailAddressValidator;
+
 class Validator
 {
+    public function __construct(
+        private readonly EmailAddressValidator $emailAddressValidator,
+    ) {
+    }
+
     public function isValidEmail(string $email): bool
     {
-        // Intentionally wrong for eval "fix customer validation" scenario
-        return (bool) preg_match('/@/', $email);
+        $email = trim($email);
+        if ($email === '') {
+            return false;
+        }
+
+        return $this->emailAddressValidator->isValid($email);
     }
 }

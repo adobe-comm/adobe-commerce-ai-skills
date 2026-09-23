@@ -4,14 +4,18 @@ description: >
   Drives root-cause analysis for Adobe Commerce defects and incidents: reproduces
   the problem, gathers evidence from logs and state (exception, system and debug
   logs, cron and queue state, indexer status, cache, config, DI and plugin
-  wiring), tests hypotheses, then proposes the smallest fix plus a regression
-  test. Use for bugs, "it worked before", failed syncs, admin or checkout errors,
-  blank or 500 pages, stale data, and incident analysis from provided logs. Do
-  not use for new feature development, pure code review, or ERP/OMS contract
-  design (integration-work once root cause is an external boundary).
+  wiring, CSP/SRI violations framed as breakage), tests hypotheses, then proposes
+  the smallest fix plus a regression test. Use for bugs, "it worked before",
+  failed syncs, admin or checkout errors, blank or 500 pages, stale data,
+  checkout CSP violations for scripts, and incident analysis from provided logs.
+  Do not use for new feature development, pure code review, L0 CSS/spacing-only
+  tweaks (frontend-and-tracking), or ERP/OMS contract design (integration-work
+  once root cause is an external boundary). Never recommend disabling CSP/SRI
+  to mask a symptom — route whitelist/nonce fixes and escalate bypasses to
+  security-review.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Magento 2.4.x CLI surface; Adobe debugging guidance 2026-09-22"
 ---
 

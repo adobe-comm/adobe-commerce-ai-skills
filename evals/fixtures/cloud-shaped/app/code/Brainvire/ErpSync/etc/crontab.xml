@@ -5,5 +5,8 @@
         <job name="brainvire_erp_order_export" instance="Brainvire\ErpSync\Cron\ExportOrders" method="execute">
             <schedule>*/15 * * * *</schedule>
         </job>
+        <job name="brainvire_erp_export_retry" instance="Brainvire\ErpSync\Cron\RetryFailedExports" method="execute">
+            <schedule>0 * * * *</schedule>
+        </job>
     </group>
 </config>

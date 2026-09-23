@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <pickuppoints>
+                <active>1</active>
+                <title>Pickup Points</title>
+                <name>Collect at a pickup point</name>
+                <price>0.00</price>
+                <model>Brainvire\PickupPointsShipping\Model\Carrier\PickupPoints</model>
+                <sallowspecific>0</sallowspecific>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </pickuppoints>
+        </carriers>
+    </default>
+</config>

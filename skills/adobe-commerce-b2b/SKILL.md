@@ -10,7 +10,7 @@ description: >
   or for MSI-only stock issues (inventory-msi).
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe Commerce B2B module set; CoE PaaS scope 2026-09-22"
 ---
 

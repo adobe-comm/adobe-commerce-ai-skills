@@ -10,7 +10,7 @@ description: >
   features or to run a full-repo security audit.
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Cursor built-in review skills 2026-09-22"
 ---
 

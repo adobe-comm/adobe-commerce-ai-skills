@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.5.2 — 2026-09-22 (live eval + vendor direct-Read)
+
+Auth: `agent login` as riddhi.shah@brainvire.com (CLI print mode).
+
+### Vendor probe (Task 1 close-out)
+- Direct `readToolCall` on `evals/fixtures/vendor-probe-git` as workspace: **yes** for `vendor/.../ProbeInterface.php`, **yes** for `composer.lock` (`magento/framework` 103.0.7). Stream-json audited.
+- Terminal route remains the recommended default (core rule 5); direct Read also worked in this environment.
+
+### Live eval
+- 82 cases × pack_on + 60 positive baselines = 142 `agent -p` runs. Sheet: `evals/results-0.5.2.md`.
+- **Correct trigger (positives):** 100.00% (60/60) after fixing 3 description mismatches and re-running those cases (first pass was 95.00% / 57/60).
+- **False trigger (negatives):** 0.00% (0/22). Targets ≥90% / ≤10% met.
+- Overlap audit live: one initial mismatch (integration map → understanding) fixed via description; one coding-standards overlap prompt timed out empty (cs3) — not scored.
+
+### Description tightenings (trigger/overlap only)
+- debugging / frontend / checkout — CSP violation RCA vs L0 spacing
+- security-review / integration-work — secret storage vs ERP contracts
+- project-understanding / integration-work — read-only integration map vs contract change
+
+Pack + all skill `metadata.version` → **0.5.2**.
+
 ## 0.5.1 — 2026-09-22 (skills hardening)
 
 Version policy unchanged: pack + every skill `metadata.version` = **0.5.1**.

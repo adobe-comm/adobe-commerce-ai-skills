@@ -10,7 +10,7 @@ description: >
   CSS/copy-only edits, or full security audits (security-review).
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe Commerce FPC/indexer patterns; CoE depth ladder 2026-09-22"
 ---
 

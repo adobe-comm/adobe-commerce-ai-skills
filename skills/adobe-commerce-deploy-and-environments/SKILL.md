@@ -10,7 +10,7 @@ description: >
 disable-model-invocation: true
 metadata:
   owner: brainvire-adobe-commerce-coe
-  version: "0.5.1"
+  version: "0.5.2"
   verified-against: "Adobe AI agent best practices S11b; Cloud/PaaS vs SaaS S19; 2026-09-22"
 ---
 

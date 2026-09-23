@@ -2,7 +2,7 @@
 
 Cursor plugin for the Brainvire Adobe Commerce CoE. It makes Cursor behave like a senior engineer on an unfamiliar Commerce project: it copies the patterns already in the repo, sizes effort to risk, verifies claims against installed code, and reports honestly what it ran.
 
-**Version 0.5.1** — 18 skills, always-on core rule, guardrail hooks, project templates, eval fixtures and cases.
+**Version 0.5.2** — 18 skills, always-on core rule, guardrail hooks, project templates, eval fixtures and cases.
 
 ## What a developer gets
 
@@ -74,11 +74,11 @@ Prefer the host clarifying-question tool (Cursor docs: “Ask questions”; ofte
 
 ## Versioning
 
-Pack version and every skill’s `metadata.version` track together (**0.5.1**). Each pack release bumps all skill metadata versions to match.
+Pack version and every skill’s `metadata.version` track together (**0.5.2**). Each pack release bumps all skill metadata versions to match.
 
 ## Evals
 
-See `evals/run.md` and `evals/results-0.5.1.md` (inventory). Historical blocked live-run sheet: `evals/results-0.5.0.md`.
+See `evals/run.md` and `evals/results-0.5.2.md` (live scores). Prior inventory: `evals/results-0.5.1.md`; blocked-run history: `evals/results-0.5.0.md`.
 
 ## Docs
 

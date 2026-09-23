@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="brainvire" translate="label" sortOrder="400">
+            <label>Brainvire</label>
+        </tab>
+        <section id="brainvire_erp" translate="label" type="text" sortOrder="100"
+                 showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>ERP Sync</label>
+            <tab>brainvire</tab>
+            <resource>Brainvire_ErpSync::config</resource>
+            <group id="order_export" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Order Export</label>
+                <field id="sandbox_url" translate="label" type="text" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sandbox URL</label>
+                </field>
+                <field id="api_key" translate="label" type="obscure" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                <field id="max_attempts" translate="label" type="text" sortOrder="30"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Attempts</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+                <field id="initial_delay_seconds" translate="label" type="text" sortOrder="40"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Initial Retry Delay (seconds)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+                <field id="max_delay_seconds" translate="label" type="text" sortOrder="50"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Retry Delay (seconds)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+                <field id="connect_timeout_seconds" translate="label" type="text" sortOrder="60"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Connect Timeout (seconds)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+                <field id="read_timeout_seconds" translate="label" type="text" sortOrder="70"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Read Timeout (seconds)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

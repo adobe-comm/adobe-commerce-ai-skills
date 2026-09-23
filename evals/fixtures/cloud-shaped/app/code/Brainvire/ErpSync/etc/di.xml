@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Sales\Api\OrderManagementInterface">
+        <plugin name="brainvire_erp_sync_stock_reservation_on_place"
+                type="Brainvire\ErpSync\Plugin\Sales\Api\OrderManagementPlacePlugin"
+                sortOrder="10"/>
+    </type>
+
+    <virtualType name="Brainvire\ErpSync\Model\Queue\OrderExportQueuePublisher\Publisher"
+                 type="Magento\Framework\MessageQueue\Publisher">
+        <arguments>
+            <argument name="topicName" xsi:type="string">brainvire.erp.order.export</argument>
+        </arguments>
+    </virtualType>
+    <type name="Brainvire\ErpSync\Model\Queue\OrderExportQueuePublisher">
+        <arguments>
+            <argument name="publisher" xsi:type="object">
+                Brainvire\ErpSync\Model\Queue\OrderExportQueuePublisher\Publisher
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="brainvire_erp_replay" xsi:type="object">
+                    Brainvire\ErpSync\Console\Command\ReplayOrderExportCommand
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>
