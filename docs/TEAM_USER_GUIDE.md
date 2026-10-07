@@ -31,7 +31,7 @@ It covers **PaaS / on-premises PHP** Magento work. For App Builder, Edge Deliver
 2. Find **adobe-commerce-ai-skills** under the team marketplace (admin: Dashboard → Plugins & MCPs → Default marketplace → Plugin Repository = this pack’s **GitHub** URL → Refresh).
 3. Click **Install**.
 4. Reload Window: Command Palette → **Developer: Reload Window**.
-5. Confirm under **Customize → Skills** that `adobe-commerce-*` skills appear (expect **18** skills at pack 0.5.1).
+5. Confirm under **Customize → Skills** that `adobe-commerce-*` skills appear (expect **18** skills at pack 0.5.2).
 
 Install modes (set by admin):
 
@@ -42,6 +42,9 @@ Install modes (set by admin):
 | Required | Always on; cannot uninstall |
 
 This pack is **not** an MCP — do not add it under Team MCP Servers / `npx`.
+
+**If Install shows “Error loading plugin” / `could not read Username for 'https://github.com'`:**  
+the marketplace cannot clone a **private** GitHub repo without Cursor↔GitHub access. Ask CoE to connect GitHub for `adobe-comm/adobe-commerce-ai-skills`, or use **Option B / C** below until that is fixed. Details: `docs/ADOPTION.md`.
 
 ### Option B — Install into one Magento project (pilot / no marketplace yet)
 

@@ -5,13 +5,29 @@
 ## Distribution (Teams plan)
 
 - One team marketplace per Teams plan.
-- Preferred: **Dashboard → Plugins & MCPs → Team Marketplaces → Default** → set **Plugin Repository** to the GitHub (or Azure, if accepted) URL of this pack → **Refresh** → **Add to Marketplace**.
+- Preferred: **Dashboard → Plugins & MCPs → Team Marketplaces → Default** → set **Plugin Repository** to the GitHub URL of this pack → **Refresh** → **Add to Marketplace**.
 - Install mode per plugin:
   - **Default Off** — good for pilot
   - **Default On** — after pilot confidence
   - **Required** — only when CoE mandates the pack
-- If marketplace Git import is unavailable on your plan: CoE owns the canonical repo; engineers use `./install.sh /path/to/project` or `~/.cursor/plugins/local/` (see `TEAM_USER_GUIDE.md`).
 - Do **not** register this pack as a Team MCP / `npx` server — it is a Cursor plugin (skills + rules + hooks), not an MCP.
+
+### Marketplace error: `could not read Username for 'https://github.com'`
+
+Cursor installs marketplace plugins by **git fetch** from the Plugin Repository. If the repo is **private** and GitHub is not connected to Cursor, install fails with:
+
+`fatal: could not read Username for 'https://github.com': terminal prompts disabled`
+
+**Fix (pick one):**
+
+1. **Connect GitHub to Cursor (recommended for private repos)**  
+   Team admin: Cursor Dashboard → connect the GitHub org that owns `adobe-comm/adobe-commerce-ai-skills` (Cursor GitHub App / marketplace repo access). Every teammate who installs may also need access to that private repo.
+2. **Make the marketplace repo readable by Cursor**  
+   Either grant the Cursor GitHub App access to the repo, or use a **public** repo / internal mirror if company policy allows.
+3. **Skip marketplace for now (works today)**  
+   Engineers use Option B/C in `TEAM_USER_GUIDE.md`: `./install.sh` or `~/.cursor/plugins/local/adobe-commerce-ai-skills`.
+
+This is **not** a bug in the skills pack — the commit Cursor tries to fetch (e.g. `a367a35…`) is valid; GitHub auth is missing.
 
 ## What’s in 0.5.1 (for rollout talk-tracks)
 
@@ -30,7 +46,7 @@
 2. Install pack (marketplace or `install.sh`).
 3. Fill `AGENTS.md` and keep `docs/ai/project-facts.md` human-reviewed.
 4. Give engineers `docs/TEAM_USER_GUIDE.md` as the primary instruction doc.
-5. Run manual evals from `evals/run.md` on fixtures (`evals/results-0.5.1.md` for inventory; live scores when CLI auth works), then smoke real tickets for 2–4 weeks.
+5. Run manual evals from `evals/run.md` on fixtures (`evals/results-0.5.2.md` for live scores), then smoke real tickets for 2–4 weeks.
 6. File wrong outputs as new `evals/*/cases.yaml` entries.
 
 ## One-command project entry points
